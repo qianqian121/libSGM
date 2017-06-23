@@ -17,6 +17,8 @@ limitations under the License.
 #include <stdlib.h>
 #include <iostream>
 
+#include <opencv2/opencv.hpp>
+#include <opencv2/contrib/contrib.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -60,6 +62,7 @@ int main(int argc, char* argv[]) {
 
 	// show image
 	cv::imshow("image", output * 256 / disp_size);
+    cv::imwrite("./disparity.png", output * 256 / disp_size);
 	
 	int key = cv::waitKey();
 	int mode = 0;
@@ -71,21 +74,21 @@ int main(int argc, char* argv[]) {
 			switch (mode) {
 			case 0:
 				{
-					cv::setWindowTitle("image", "disparity");
+//					cv::setWindowTitle("image", "disparity");
 					cv::imshow("image", output * 256 / disp_size);
 					break;
 				}
 			case 1:
 				{
 					cv::Mat m;
-					cv::applyColorMap(output * 256 / disp_size, m, cv::COLORMAP_JET);
-					cv::setWindowTitle("image", "disparity color");
+	u				cv::applyColorMap(output * 256 / disp_size, m, cv::COLORMAP_JET);
+//					cv::setWindowTitle("image", "disparity color");
 					cv::imshow("image", m);
 					break;
 				}
 			case 2:
 				{
-					cv::setWindowTitle("image", "input");
+//					cv::setWindowTitle("image", "input");
 					cv::imshow("image", left);
 					break;
 				}
